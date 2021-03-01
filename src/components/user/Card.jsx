@@ -35,6 +35,7 @@ CardBottom.craft = {
 }
 
 function Card({background,padding=20}) {
+
     return (
         <Container background={background} padding={padding}>
             <Element is={CardTop} id='text' canvas>
@@ -42,9 +43,9 @@ function Card({background,padding=20}) {
                     <Text text='Subtile' fontSize={15} />
             </Element>
             <Element is={CardBottom} id='buttons' canvas>
-                <Button color={'primary'} text={"learn more"} variant={'contained'} size={'small'}  />
+                <Button color={'primary'} btn={"learn more"} variant={'contained'} size={'small'}  />
             </Element>
-            <Element canvas id={'othner'}>
+            <Element canvas id={'other'}>
                 <p>Hello World</p>
             </Element>
         </Container>

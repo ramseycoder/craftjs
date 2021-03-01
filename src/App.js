@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Paper,Typography,Grid} from '@material-ui/core'
 import SettingPanel from "./components/SettingPanel";
 import Toolbox from "./components/Toolbox";
@@ -7,24 +7,39 @@ import Button from "./components/user/Button";
 import Text from "./components/user/Text";
 import Container from "./components/user/Container";
 import Card from "./components/user/Card";
+import {connect} from 'react-redux'
+import TwoDivs from "./components/user/twoDivs";
 
 import {Editor,Frame,Element} from "@craftjs/core"
+import EditableText from "./components/EditableText";
 
-const App = ()=>{
-
+const App = ({value})=>{
+    useEffect(()=>{
+        
+        if(value && window.document.querySelector('.editableElement')){
+            window.document.querySelector('.editableElement').style.display = 'block';
+            setTimeout(()=>{
+                window.document.querySelector('.editableElement').style.marginRight = '0px';
+            },0)
+        }else if(window.document.querySelector('.editableElement')){
+            window.document.querySelector('.editableElement').style.marginRight = '-500px';
+            setTimeout(()=>{
+                window.document.querySelector('.editableElement').style.display = 'none';
+            },220)
+        }
+    },[value]);
     return (
-        <div style={{width:'800px',margin:'0 auto'}}>
+        <div style={{width:'1300px',margin:'0 auto'}}>
             <Typography variant='h5' align='center'>A super simple page Editor</Typography>
-            <Editor resolver={{Text,Button,Container,Card}}>
+            <Editor resolver={{Text,Button,Container,Card,TwoDivs}}>
                 <Grid container spacing={0} style={{padding:'10px'}}>
                     <Grid item xs>
                         <TopBar />
                     </Grid>
                     <Grid container spacing={3} item>
-
-                        <Grid item xs>
+                        <Grid item xs style={{maxHeight:"90vh",overflow:"scroll"}}>
                             <Frame>
-                                <Element  is={Container} padding={5} background={'#eee'} canvas>
+                                <Element  is={Container} padding={10}  background={'#eee'} canvas>
                                     <Card />
                                     <Text size="small" text="Hi world!" />
                                     <Text size="small" text="Hey world!" />
@@ -38,18 +53,27 @@ const App = ()=>{
                         </Grid>
 
 
-                        <Grid item xs={3}>
+                        {!value && <Grid item xs={3}>
                             <Paper>
-                                <Toolbox />
-                                <SettingPanel />
+                                <Toolbox/>
+                                <SettingPanel/>
                             </Paper>
+                        </Grid>}
+                        <Grid item>
+                            <EditableText />
                         </Grid>
                     </Grid>
                 </Grid>
+
             </Editor>
         </div>
     )
 }
 
+const mapStateToProps = state=>{
+    return {
+        value:state.type
+    }
+}
 
-export default App;
+export default connect(mapStateToProps,null)(App);
