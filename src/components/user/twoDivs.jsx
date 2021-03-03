@@ -21,19 +21,19 @@ function TwoDivs(props) {
             paddingTop:paddingTop+"px",
             paddingLeft:paddingLeft+"px",
             paddingBottom:paddingBottom+"px",
-        }} ref={ref=>connect(drag(ref))} onClick={(e)=> {
-            setElement({setProp, type: 'div'})
+        }} className={'divParent'} ref={ref=>connect(drag(ref))} onClick={(e)=> {
+           
             SelectElement(e.target)
         }}>
             <Grid container spacing={1}>
                 <Grid item xs>
                      <Element id={"div1"} canvas>
-                           <Card  />
+                           <Card drag={false} />
                      </Element>
                 </Grid>
                 <Grid item xs>
                     <Element id={"div2"} canvas>
-                        <Card t />
+                        <Card drag={false} />
                     </Element>
                 </Grid>
             </Grid>

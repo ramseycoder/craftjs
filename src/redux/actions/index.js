@@ -19,6 +19,10 @@ export const ChangeValue = (data)=>{
 }
 
 export  const ResetValue = ()=>{
+    const allElemnts = document.querySelectorAll('.selected');
+    allElemnts.forEach(xel=>{
+        xel.classList.remove('selected');
+    })
     return {
         type:'RESET'
     }

@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {SelectElement} from "../../functions";
 
 const Text = ({text,fontSize,setElement,color,...rest})=>{
-    const {marginTop=0,marginBottom=0,marginLeft=0,marginRight=0} = rest;
+    const {marginTop=0,marginBottom=0,marginLeft=0,marginRight=0,alignText} = rest;
     const {paddingTop=5,paddingBottom=5,paddingLeft=5,paddingRight=5} = rest;
     const {connectors:{drag,connect},setProp}  = useNode(state=>({
         dragged:state.events.dragged,
@@ -13,8 +13,10 @@ const Text = ({text,fontSize,setElement,color,...rest})=>{
     }))
     return (
             <div ref={ref => connect(drag(ref))} onClick={(e)=> {
-                setElement({setProp, type: 'text'});
+                setElement({setProp, type: 'text'})
+
                 SelectElement(e.target)
+                e.stopPropagation();
             }}>
                <p style={{
                    fontSize,
@@ -27,6 +29,7 @@ const Text = ({text,fontSize,setElement,color,...rest})=>{
                    paddingTop:paddingTop+"px",
                    paddingLeft:paddingLeft+"px",
                    paddingBottom:paddingBottom+"px",
+                   textAlign:alignText
                }}>{text}</p>
             </div>
     )

@@ -2,18 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc9863b9-fae3-4295-a3fa-68c7c2ef599f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/user/twoDivs.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/functions/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Toolbox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Toolbox.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EditableText.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EditableText.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/user/Button.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/Button.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/user/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/Card.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/Container.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/Container.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/user/Text.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/Text.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/user/twoDivs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/user/twoDivs.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +79,12 @@
       <workItem from="1614342406970" duration="169000" />
       <workItem from="1614342645938" duration="9412000" />
       <workItem from="1614589392303" duration="8639000" />
-      <workItem from="1614603897957" duration="10542000" />
+      <workItem from="1614603897957" duration="11117000" />
+      <workItem from="1614674257273" duration="7553000" />
+      <workItem from="1614693040981" duration="7470000" />
+      <workItem from="1614758663959" duration="2641000" />
+      <workItem from="1614780199818" duration="1001000" />
+      <workItem from="1615042115328" duration="330000" />
     </task>
     <servers />
   </component>

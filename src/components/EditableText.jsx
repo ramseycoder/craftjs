@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Typography, Box,  FormLabel, Slider,Tabs,Tab,AppBar,Button,Input} from "@material-ui/core";
+import {Grid, Typography, Box,  FormLabel, Slider,Tabs,Tab,AppBar,Button,Input,Select,MenuItem} from "@material-ui/core";
 import {connect} from 'react-redux'
 import {ChangeValue,ResetValue} from "../redux/actions";
 
@@ -32,8 +32,8 @@ function a11yProps(index) {
 
 
 function EditableText(props) {
-    const {ChangeValue,text:value,fontSize,ResetValue,type} = props
-    const {marginBottom,marginTop,marginLeft,marginRight,paddingRight,paddingTop,paddingLeft,paddingBottom} = props;
+    const {ChangeValue,text:value,fontSize,ResetValue,type,href} = props
+    const {marginBottom,marginTop,marginLeft,marginRight,paddingRight,paddingTop,paddingLeft,paddingBottom,alignText,background,color} = props;
     const [tabValue, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -63,12 +63,12 @@ function EditableText(props) {
                 <TabPanel value={tabValue} index={0} >
                     <Grid item xs>
                         <FormLabel>Titre</FormLabel>
-                        <Input  style={{width:'100%'}} value={value} onChange={(e) => ChangeValue({value: e.target.value, type: ''})}/>
+                        <Input disabled={type === 'div'?true:false}  style={{width:'100%'}} value={type === 'div'?'':value} onChange={(e) => ChangeValue({value: e.target.value, type: ''})}/>
                     </Grid>
 
                     {type === 'btn' && <Grid item xs style={{marginTop:'5px'}}>
                         <FormLabel>Lien</FormLabel>
-                        <Input placeholder={"http://www.example.com"} fullWidth/>
+                        <Input placeholder={"http://www.example.com"} value={href} onChange={( e) => ChangeValue({value:e.target.value, type: 'href'})} fullWidth/>
                     </Grid>}
                 </TabPanel>
                 <TabPanel value={tabValue} index={1}>
@@ -76,7 +76,7 @@ function EditableText(props) {
                         <Grid item xs>
                             <FormLabel component={'legend'}>Taille du texte</FormLabel>
                             <Slider
-                                defaultValue={fontSize}
+                                value={fontSize}
                                 max={150}
                                 min={7}
                                 step={1}
@@ -87,98 +87,112 @@ function EditableText(props) {
                         <Grid item xs container>
                             <Grid item xs>
                                 <FormLabel component={'legend'}>Couleur</FormLabel>
-                                <Input type={'color'} style={{width:'50px',height:"50px"}}
+                                <Input type={'color'}  value={color} style={{width:'50px',height:"50px"}}
                                        onChange={(e) => ChangeValue({value: e.target.value, type: 'color'})}/>
                             </Grid>
                             <Grid item xs>
                                 <FormLabel component={'legend'}>Couleur de fond</FormLabel>
-                                <Input type={'color'} style={{width:'50px',height:"50px"}}
-                                       onChange={(e) => ChangeValue({value: e.target.value, type: 'backgroundColor'})}/>
+                                <Input type={'color'} value={background} style={{width:'50px',height:"50px"}}
+                                       onChange={(e) => ChangeValue({value: e.target.value, type: 'background'})}/>
                             </Grid>
                         </Grid>
+                        <br />
+                        <Grid item container>
+                            <Grid item xs>
+                                <Grid item xs>
+                                    <FormLabel>Marge extérieure</FormLabel>
+                                </Grid>
+                                <Grid item xs container spacing={1}>
+                                    <Grid item xs>
+                                        <FormLabel component={'legend'}>Haut</FormLabel>
+                                        <Input
+                                            value={marginTop}
+                                            type={"number"}
+                                            onChange={( e) => ChangeValue({value:e.target.value, type: 'marginTop'})}
+                                        />
+                                    </Grid>
+                                    <Grid item xs>
+                                        <FormLabel component={'legend'}>Bas</FormLabel>
+                                        <Input
+                                            value={marginBottom}
+                                            type={"number"}
+                                            onChange={( e) => ChangeValue({value:e.target.value, type: 'marginBottom'})}
+                                        />
+                                    </Grid>
+                                    <Grid item xs>
+                                        <FormLabel component={'legend'}>Gauche</FormLabel>
+                                        <Input
+                                            value={marginLeft}
+                                            type={"number"}
+                                            onChange={( e) => ChangeValue({value:e.target.value, type: 'marginLeft'})}
+                                        />
+                                    </Grid>
+                                    <Grid item xs>
+                                        <FormLabel component={'legend'}>Droite</FormLabel>
+                                        <Input
+                                            value={marginRight}
+                                            type={"number"}
+                                            onChange={( e) => ChangeValue({value:e.target.value, type: 'marginRight'})}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                            <Grid item xs>
+                                <Grid item xs>
+                                    <FormLabel>Marge intérieure</FormLabel>
+                                </Grid>
+                                <Grid item xs container spacing={1}>
+                                    <Grid item xs>
+                                        <FormLabel component={'legend'}>Haut</FormLabel>
+                                        <Input
+                                            value={paddingTop}
+                                            type={"number"}
+                                            onChange={( e) => ChangeValue({value:e.target.value, type: 'paddingTop'})}
+                                        />
+                                    </Grid>
+                                    <Grid item xs>
+                                        <FormLabel component={'legend'}>Bas</FormLabel>
+                                        <Input
+                                            value={paddingBottom}
+                                            type={"number"}
+                                            onChange={( e) => ChangeValue({value:e.target.value, type: 'paddingBottom'})}
+                                        />
+                                    </Grid>
+                                    <Grid item xs>
+                                        <FormLabel component={'legend'}>Gauche</FormLabel>
+                                        <Input
+                                            value={paddingLeft}
+                                            type={"number"}
+                                            onChange={( e) => ChangeValue({value:e.target.value, type: 'paddingLeft'})}
+                                        />
+                                    </Grid>
+                                    <Grid item xs>
+                                        <FormLabel component={'legend'}>Droite</FormLabel>
+                                        <Input
+                                            value={paddingRight}
+                                            type={"number"}
+                                            onChange={( e) => ChangeValue({value:e.target.value, type: 'paddingRight'})}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <br />
                         <Grid item xs>
-                            <FormLabel>Marge extérieure</FormLabel>
-                        </Grid>
-                        <Grid item xs container spacing={1}>
-                            <Grid item xs>
-                                <FormLabel component={'legend'}>En Haut</FormLabel>
-                                <Input
-                                    value={marginTop}
-                                    type={"number"}
-                                    onChange={( e) => ChangeValue({value:e.target.value, type: 'marginTop'})}
-                                />
-                            </Grid>
-                            <Grid item xs>
-                                <FormLabel component={'legend'}>En Bas</FormLabel>
-                                <Input
-                                    value={marginBottom}
-                                    type={"number"}
-                                    onChange={( e) => ChangeValue({value:e.target.value, type: 'marginBottom'})}
-                                />
-                            </Grid>
-                            <Grid item xs>
-                                <FormLabel component={'legend'}>A Gauche</FormLabel>
-                                <Input
-                                    value={marginLeft}
-                                    type={"number"}
-                                    onChange={( e) => ChangeValue({value:e.target.value, type: 'marginLeft'})}
-                                />
-                            </Grid>
-                            <Grid item xs>
-                                <FormLabel component={'legend'}>A Droite</FormLabel>
-                                <Input
-                                    value={marginRight}
-                                    type={"number"}
-                                    onChange={( e) => ChangeValue({value:e.target.value, type: 'marginRight'})}
-                                />
-                            </Grid>
-                        </Grid>
-                        <Grid item xs>
-                            <FormLabel>Marge intérieure</FormLabel>
-                        </Grid>
-                        <Grid item xs container spacing={1}>
-                            <Grid item xs>
-                                <FormLabel component={'legend'}>En Haut</FormLabel>
-                                <Input
-                                    value={paddingTop}
-                                    type={"number"}
-                                    style={{width:"100px"}}
-                                    onChange={( e) => ChangeValue({value:e.target.value, type: 'paddingTop'})}
-                                />
-                            </Grid>
-                            <Grid item xs>
-                                <FormLabel component={'legend'}>En Bas</FormLabel>
-                                <Input
-                                    value={paddingBottom}
-                                    type={"number"}
-                                    style={{width:"100px"}}
-                                    onChange={( e) => ChangeValue({value:e.target.value, type: 'paddingBottom'})}
-                                />
-                            </Grid>
-                            <Grid item xs>
-                                <FormLabel component={'legend'}>A Gauche</FormLabel>
-                                <Input
-                                    value={paddingLeft}
-                                    type={"number"}
-                                    style={{width:"100px"}}
-                                    onChange={( e) => ChangeValue({value:e.target.value, type: 'paddingLeft'})}
-                                />
-                            </Grid>
-                            <Grid item xs>
-                                <FormLabel component={'legend'}>A Droite</FormLabel>
-                                <Input
-                                    value={paddingRight}
-                                    type={"number"}
-                                    style={{width:"100px"}}
-                                    onChange={( e) => ChangeValue({value:e.target.value, type: 'paddingRight'})}
-                                />
-                            </Grid>
+                            <FormLabel>Alignement du texte</FormLabel> <br />
+                            <Select value={alignText} onChange={(e)=> ChangeValue({value:e.target.value,type:"alignText"})}>
+                                <MenuItem value={"left"}>A gauche</MenuItem>
+                                <MenuItem value={"center"}>Centrer</MenuItem>
+                                <MenuItem value={"right"}>A Droite</MenuItem>
+                            </Select>
                         </Grid>
 
                     </Grid>
                 </TabPanel>
                 <TabPanel value={tabValue} index={2} >
-                    Item Three
+                    <Grid container>
+
+                    </Grid>
                 </TabPanel>
 
             {/*<Grid container spacing={2}>
@@ -216,24 +230,20 @@ function EditableText(props) {
             <div style={{position:'absolute',bottom:"5px", left:"10px"}}>
                 <Button  style={{background:'black',color:'white'}} onClick={()=>ResetValue()}>Close</Button>
             </div>
+            <div style={{position:'absolute',bottom:"5px", left:"150px"}}>
+                <Button  style={{background:'black',color:'white'}} onClick={()=>{
+                    console.log('<style type="text/css">*{box-sizing: border-box}</style>'+document.querySelector('.previewhtml')?.firstChild.outerHTML.replace("e.preventDefault();","").replace(/draggable="true"/g,""))
+                }}>Generer la page html</Button>
+            </div>
         </Box>
     );
 }
 const mapStateToProps = state=>{
     console.log('state ' ,state)
-    const {marginBottom,marginTop,marginLeft,marginRight,paddingRight,paddingTop,paddingLeft,paddingBottom} = state;
+    //const {marginBottom,marginTop,marginLeft,marginRight,paddingRight,paddingTop,paddingLeft,paddingBottom,alignText} = state;
     return {
         text:state.value,
-        fontSize:state.fontSize,
-        type:state.type,
-        marginBottom,
-        marginTop,
-        marginRight,
-        marginLeft,
-        paddingRight,
-        paddingLeft,
-        paddingBottom,
-        paddingTop
+        ...state
     }
 }
 const mapDisptachToProps = dispatch=>{

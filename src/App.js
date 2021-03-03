@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect,useRef} from 'react'
 import {Paper,Typography,Grid} from '@material-ui/core'
 import SettingPanel from "./components/SettingPanel";
 import Toolbox from "./components/Toolbox";
@@ -14,6 +14,7 @@ import {Editor,Frame,Element} from "@craftjs/core"
 import EditableText from "./components/EditableText";
 
 const App = ({value})=>{
+    const divRef = useRef(null);
     useEffect(()=>{
         
         if(value && window.document.querySelector('.editableElement')){
@@ -28,28 +29,35 @@ const App = ({value})=>{
             },220)
         }
     },[value]);
+
+    useEffect(()=>{
+        console.log('divRef ',divRef.current?.firstChild.outerHTML)
+        if(divRef.current)console.log(divRef.current.firstChild.outerHTML)
+    })
     return (
         <div style={{width:'1300px',margin:'0 auto'}}>
             <Typography variant='h5' align='center'>A super simple page Editor</Typography>
-            <Editor resolver={{Text,Button,Container,Card,TwoDivs}}>
+            <Editor resolver={{Text,Button,Container,Card,TwoDivs}} >
                 <Grid container spacing={0} style={{padding:'10px'}}>
                     <Grid item xs>
                         <TopBar />
                     </Grid>
                     <Grid container spacing={3} item>
                         <Grid item xs style={{maxHeight:"90vh",overflow:"scroll"}}>
-                            <Frame>
-                                <Element  is={Container} padding={10}  background={'#eee'} canvas>
-                                    <Card />
-                                    <Text size="small" text="Hi world!" />
-                                    <Text size="small" text="Hey world!" />
-                                    <Text size="small" text="Holla world!" />
-                                    <Text size="small" text="Hey world!" />
-                                    <Element is={Container} padding={6} background="#999" canvas>
-                                        <Text size="small" text="It's me again!" />
+                            <div ref={divRef} className={'previewhtml'}>
+                                <Frame>
+                                    <Element  is={Container} padding={10}  background={'#eee'} canvas>
+                                        <Card />
+                                        <Text size="small" text="Hi world!" />
+                                        <Text size="small" text="Hey world!" />
+                                        <Text size="small" text="Holla world!" />
+                                        <Text size="small" text="Hey world!" />
+                                        <Element is={Container} padding={6} background="#999" canvas>
+                                            <Text size="small" text="It's me again!" />
+                                        </Element>
                                     </Element>
-                                </Element>
-                            </Frame>
+                                </Frame>
+                            </div>
                         </Grid>
 
 

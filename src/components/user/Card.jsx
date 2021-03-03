@@ -34,19 +34,19 @@ CardBottom.craft = {
     }
 }
 
-function Card({background,padding=20}) {
+function Card({background,padding=20,drag=true}) {
 
     return (
-        <Container background={background} padding={padding}>
-            <Element is={CardTop} id='text' canvas>
+        <Container draggable={drag} background={background} padding={padding}>
+            <Element id='text' canvas>
                     <Text text='Title' fontSize={25} />
                     <Text text='Subtile' fontSize={15} />
             </Element>
-            <Element is={CardBottom} id='buttons' canvas>
+            <Element  id='buttons' canvas>
                 <Button color={'primary'} btn={"learn more"} variant={'contained'} size={'small'}  />
             </Element>
             <Element canvas id={'other'}>
-                <p>Hello World</p>
+                <Text text='Hellow World' fontSize={15} />
             </Element>
         </Container>
     );
